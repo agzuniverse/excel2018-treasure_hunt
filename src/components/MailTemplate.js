@@ -15,7 +15,8 @@ class MailTemplate extends Component {
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
         let res = xhr.responseText;
-        console.log(JSON.parse(res));
+        res = JSON.parse(res);
+        console.log(res);
         if (res.answer == "Wrong") {
           document.getElementsByClassName("incorrectAnswer")[0].style.display =
             "block";
