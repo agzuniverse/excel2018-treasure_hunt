@@ -16,10 +16,10 @@ class MailTemplate extends Component {
       if (xhr.readyState == 4 && xhr.status == 200) {
         let res = xhr.responseText;
         console.log(JSON.parse(res));
-        if (res.answer == "wrong") {
+        if (res.answer == "Wrong") {
           document.getElementsByClassName("incorrectAnswer")[0].style.display =
             "block";
-        } else if (res.answer == "correct") {
+        } else if (res.answer == "Correct") {
           document.getElementsByClassName("correctAnswer")[0].style.display =
             "block";
           setInterval(() => {
