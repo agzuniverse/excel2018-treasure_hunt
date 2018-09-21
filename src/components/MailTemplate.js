@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../css/MailStyles.css";
 import Button from "@material-ui/core/Button";
 
+var base_url = "http://deduce.excelmec.org:8000";
+
 class MailTemplate extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,7 @@ class MailTemplate extends Component {
         }
       }
     };
-    xhr.open("POST", "http://localhost:8000/api/answer/"); //CHANGE URL IF NEEDED
+    xhr.open("POST", base_url+"/api/answer/"); //CHANGE URL IF NEEDED
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.setRequestHeader("Authorization", `token ${this.props.authToken}`);
     xhr.send(JSON.stringify({ answer: answer }));
