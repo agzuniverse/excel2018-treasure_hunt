@@ -59,8 +59,8 @@ class MailTemplate extends Component {
         <div className="inputWrapper">
           <input type="text" id="ans" placeholder="Your answer" />
           <Button
-            variant="outlined"
-            color="secondary"
+            variant="oulined"
+            color="inherit"
             onClick={this.handleSubmit}
           >
             Submit

@@ -130,7 +130,7 @@ class Main extends Component {
                 timestamp: data.timestamp
               },
               mailBody: {
-                content: data.soure_hint,
+                content: data.source_hint,
                 image: data.image,
                 attachment: data.data_url
               }
