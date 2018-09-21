@@ -3,6 +3,7 @@ import "../css/Sidebar.css";
 import sherlock from "../assets/sherDone.png";
 import treasure from "../assets/treasureNew.png";
 import Button from "@material-ui/core/Button";
+import { Link } from 'react-router-dom'
 
 class Sidebar extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Sidebar extends Component {
       rank: ""
     };
   }
+
 
   componentDidUpdate(prevProps) {
     var base_url = "http://deduce.excelmec.org:8000"
@@ -83,11 +85,28 @@ class Sidebar extends Component {
 
         <div className="logout">
           <div style={{ display: "flex", flexDirection: "column" }}>
+            <Link to="/rules" style={{ textDecoration:"none" }}>
             <Button
-              variant="raised"
+              variant="outlined"
               color="primary"
               style={{
-                fontWeight: "bold"
+                fontWeight: "bold",
+                border: "2px solid #f9f639",
+                color: "#f9f639",
+                width: "100%",
+              }}
+            >
+              Rules
+            </Button>
+          </Link>
+            <Button
+              variant="outlined"
+              color="primary"
+              style={{
+                fontWeight: "bold",
+                border: "2px solid #f9f639",
+                color: "#f9f639",
+                marginTop: "1em",
               }}
               onClick={this.props.showLeaderboard}
             >
@@ -95,11 +114,11 @@ class Sidebar extends Component {
             </Button>
             {this.props.isLoggedIn ? (
               <Button
-                variant="contained"
+                variant="oulined"
                 style={{
-                  marginTop: "2em",
-                  backgroundColor: "white",
-                  color: "purple",
+                  marginTop: "1em",
+                  border: "2px solid red",
+                  color: "red",
                   fontWeight: "bold"
                 }}
                 onClick={this.props.logout}

@@ -44,7 +44,6 @@ class MailTemplate extends Component {
       <div className="mailDiv">
         <div>
           <span className="expandedtitle">{title}</span>
-          <span className="expandedtimestamp">{timestamp}</span>
           <hr className="fullWidth" />
         </div>
         <div className="contentWrapper">
