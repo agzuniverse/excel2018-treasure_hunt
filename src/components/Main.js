@@ -3,6 +3,7 @@ import Sidebar from "./Sidebar";
 import "../css/Main.css";
 import GoogleLogin from "react-google-login";
 import MailRow from "./MailRow";
+import excel from "../assets/logo3x2newest.png";
 import MailTemplate from "./MailTemplate";
 import Leaderboard from "./Leaderboard";
 import Modal from "@material-ui/core/Modal";
@@ -255,7 +256,7 @@ class Main extends Component {
         <div id="logodiv">
           <img
             id="logo"
-            src="http://excelmec.org/partners/img/excel2018.14bdbf062ab3f85e249a4d31cd4f0584.png"
+            src={excel}
           />
         </div>
         <div className="btn">
@@ -283,7 +284,7 @@ class Main extends Component {
   responseGoogleSuccess = res => {
     let main = this;
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       let res = xhr.responseText;
       console.log(res);
       if (res && JSON.parse(res).login) {
