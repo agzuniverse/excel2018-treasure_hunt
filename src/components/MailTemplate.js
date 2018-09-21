@@ -31,7 +31,7 @@ class MailTemplate extends Component {
         }
       }
     };
-    xhr.open("POST", base_url+"/api/answer/"); //CHANGE URL IF NEEDED
+    xhr.open("POST", base_url + "/api/answer/"); //CHANGE URL IF NEEDED
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.setRequestHeader("Authorization", `token ${this.props.authToken}`);
     xhr.send(JSON.stringify({ answer: answer }));
@@ -50,18 +50,16 @@ class MailTemplate extends Component {
           <span className="content">{content}</span>
           {attachment ? (
             <span>
-              <a href={attachment}> Click here to download attachment</a>
+              <a href={attachment} target="_blank">
+                Click here to download attachment
+              </a>
             </span>
           ) : null}
           <img className="q_image" src={image} />
         </div>
         <div className="inputWrapper">
           <input type="text" id="ans" placeholder="Your answer" />
-          <Button
-            variant="oulined"
-            color="inherit"
-            onClick={this.handleSubmit}
-          >
+          <Button variant="oulined" color="inherit" onClick={this.handleSubmit}>
             Submit
           </Button>
           <span className="incorrectAnswer"> Answer is incorrect! </span>
