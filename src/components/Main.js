@@ -256,7 +256,7 @@ class Main extends Component {
         <div id="logodiv">
           <img
             id="logo"
-            src={excel}
+            src={excel} style={{ height: "12em", width: "auto" }}
           />
         </div>
         <div className="btn">
