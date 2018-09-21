@@ -13,7 +13,6 @@ class MailRow extends Component {
       <div className="mailRowWrapper">
         <div className="mailRow" onClick={() => onClick(index)}>
           <span className="title">{title}</span>
-          <span className="timestamp">{timestamp}</span>
         </div>
       </div>
     );
