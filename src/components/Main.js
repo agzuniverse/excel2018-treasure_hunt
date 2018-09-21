@@ -8,6 +8,8 @@ import Leaderboard from "./Leaderboard";
 import Modal from "@material-ui/core/Modal";
 import Icon from "@material-ui/core/Icon";
 
+var base_url = "http://deduce.excelmec.org:8000";
+
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +66,7 @@ class Main extends Component {
   componentDidMount() {
     let authToken = localStorage.getItem("auth_token");
     if (authToken) {
-      fetch("http://localhost:8000/api/session_check/", {
+      fetch(base_url+"/api/session_check/", {
         headers: {
           Authorization: `token ${authToken}`
         }
@@ -86,7 +88,7 @@ class Main extends Component {
           }
         });
     }
-    fetch("http://localhost:8000/api/leaderboard/")
+    fetch(base_url+"/api/leaderboard/")
       .then(res => {
         return res.json();
       })
@@ -109,7 +111,7 @@ class Main extends Component {
   }
 
   fetchInfo = () => {
-    fetch("http://localhost:8000/api/ask/", {
+    fetch(base_url+"/api/ask/", {
       headers: {
         Authorization: `token ${this.state.auth_token}`
       }
@@ -136,7 +138,7 @@ class Main extends Component {
         });
       });
 
-    fetch("http://localhost:8000/api/leaderboard/")
+    fetch(base_url+"/api/leaderboard/")
       .then(res => {
         return res.json();
       })
@@ -228,7 +230,7 @@ class Main extends Component {
   // };
 
   logout = () => {
-    fetch("http://localhost:8000/api/logout/").then(res => {
+    fetch(base_url+"/api/logout/").then(res => {
       this.setState(
         {
           isLoggedIn: false
@@ -299,7 +301,7 @@ class Main extends Component {
         );
       }
     };
-    xhr.open("POST", "http://localhost:8000/api/social/google-oauth2/"); //CHANGE URL IF NEEDED
+    xhr.open("POST", base_url+"/api/social/google-oauth2/"); //CHANGE URL IF NEEDED
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({ access_token: res.accessToken }));
   };
