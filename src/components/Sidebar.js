@@ -17,8 +17,10 @@ class Sidebar extends Component {
   }
 
   componentDidUpdate(prevProps) {
+    var base_url = "http://deduce.excelmec.org:8000"
+
     if (prevProps.authToken !== this.props.authToken) {
-      fetch("http://localhost:8000/api/profile/", {
+      fetch(base_url + "/api/profile/", {
         headers: {
           Authorization: `token ${this.props.authToken}`
         }
@@ -35,7 +37,7 @@ class Sidebar extends Component {
             propic: data.profile
           });
         });
-      fetch("http://localhost:8000/api/rank/", {
+      fetch(base_url+"/api/rank/", {
         headers: {
           Authorization: `token ${this.props.authToken}`
         }
