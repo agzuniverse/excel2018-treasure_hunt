@@ -12,37 +12,40 @@ class MailTemplate extends Component {
 
   handleSubmit = () => {
     let answer = document.getElementById("ans").value;
-    if(answer.indexOf(' ') >= 0){
-      window.alert("The answer should not contain any whitespaces.\n Please read the rules.");
-    }
-    //Send the answer to backend
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        let res = xhr.responseText;
-        res = JSON.parse(res);
-        console.log(res);
-        if (res.answer == "Wrong") {
-          document.getElementsByClassName("incorrectAnswer")[0].style.display =
-            "block";
-        } else if (res.answer == "Correct") {
-          document.getElementsByClassName("correctAnswer")[0].style.display =
-            "block";
-          setInterval(() => {
-            window.location.reload();
-          }, 1000); //Display "Answer correct" for at least one second before reloading page to get new question
+    document.getElementsByClassName("whitespaceAnswer")[0].style.display =
+      "none";
+    if (answer.indexOf(" ") !== -1) {
+      document.getElementsByClassName("whitespaceAnswer")[0].style.display =
+        "block";
+    } else {
+      //Send the answer to backend
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          let res = xhr.responseText;
+          res = JSON.parse(res);
+          if (res.answer == "Wrong") {
+            document.getElementsByClassName(
+              "incorrectAnswer"
+            )[0].style.display = "block";
+          } else if (res.answer == "Correct") {
+            document.getElementsByClassName("correctAnswer")[0].style.display =
+              "block";
+            setInterval(() => {
+              window.location.reload();
+            }, 1000); //Display "Answer correct" for at least one second before reloading page to get new question
+          }
         }
-      }
-    };
-    xhr.open("POST", base_url + "/api/answer/"); //CHANGE URL IF NEEDED
-    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhr.setRequestHeader("Authorization", `token ${this.props.authToken}`);
-    xhr.send(JSON.stringify({ answer: answer }));
+      };
+      xhr.open("POST", base_url + "/api/answer/"); //CHANGE URL IF NEEDED
+      xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhr.setRequestHeader("Authorization", `token ${this.props.authToken}`);
+      xhr.send(JSON.stringify({ answer: answer }));
+    }
   };
 
   render() {
     const { title, timestamp, content, attachment, image } = this.props;
-    console.log(attachment);
     return (
       <div className="mailDiv">
         <div>
@@ -66,6 +69,10 @@ class MailTemplate extends Component {
             Submit
           </Button>
           <span className="incorrectAnswer"> Answer is incorrect! </span>
+          <span className="whitespaceAnswer">
+            {" "}
+            Answer should not contain whitespace!{" "}
+          </span>
           <span className="correctAnswer"> Answer is correct! </span>
         </div>
       </div>

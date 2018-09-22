@@ -3,7 +3,7 @@ import "../css/Sidebar.css";
 import sherlock from "../assets/sherDone.png";
 import treasure from "../assets/treasureNew.png";
 import Button from "@material-ui/core/Button";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 class Sidebar extends Component {
   constructor(props) {
@@ -17,9 +17,8 @@ class Sidebar extends Component {
     };
   }
 
-
   componentDidUpdate(prevProps) {
-    var base_url = "http://deduce.excelmec.org:8000"
+    var base_url = "http://deduce.excelmec.org:8000";
 
     if (prevProps.authToken !== this.props.authToken) {
       fetch(base_url + "/api/profile/", {
@@ -31,7 +30,6 @@ class Sidebar extends Component {
           return res.json();
         })
         .then(data => {
-          console.log(data);
           this.setState({
             firstname: data.first_name,
             lastname: data.last_name,
@@ -39,7 +37,7 @@ class Sidebar extends Component {
             propic: data.profile
           });
         });
-      fetch(base_url+"/api/rank/", {
+      fetch(base_url + "/api/rank/", {
         headers: {
           Authorization: `token ${this.props.authToken}`
         }
@@ -85,7 +83,20 @@ class Sidebar extends Component {
 
         <div className="logout">
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <Link to="/rules" style={{ textDecoration:"none" }}>
+            <Link to="/rules" style={{ textDecoration: "none" }}>
+              <Button
+                variant="outlined"
+                color="primary"
+                style={{
+                  fontWeight: "bold",
+                  border: "2px solid #f9f639",
+                  color: "#f9f639",
+                  width: "100%"
+                }}
+              >
+                Rules
+              </Button>
+            </Link>
             <Button
               variant="outlined"
               color="primary"
@@ -93,20 +104,7 @@ class Sidebar extends Component {
                 fontWeight: "bold",
                 border: "2px solid #f9f639",
                 color: "#f9f639",
-                width: "100%",
-              }}
-            >
-              Rules
-            </Button>
-          </Link>
-            <Button
-              variant="outlined"
-              color="primary"
-              style={{
-                fontWeight: "bold",
-                border: "2px solid #f9f639",
-                color: "#f9f639",
-                marginTop: "1em",
+                marginTop: "1em"
               }}
               onClick={this.props.showLeaderboard}
             >
