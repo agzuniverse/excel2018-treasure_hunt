@@ -127,6 +127,11 @@ a:visited {
   color: red;
 }
 
+.whitespaceAnswer {
+  display: none;
+  color: red;
+}
+
 .correctAnswer {
   display: none;
   color: green;
