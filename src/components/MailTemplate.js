@@ -12,6 +12,9 @@ class MailTemplate extends Component {
 
   handleSubmit = () => {
     let answer = document.getElementById("ans").value;
+    if(answer.indexOf(' ') >= 0){
+      window.alert("The answer should not contain any whitespaces.\n Please read the rules.");
+    }
     //Send the answer to backend
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
