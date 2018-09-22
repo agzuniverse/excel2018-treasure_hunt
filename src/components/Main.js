@@ -220,6 +220,10 @@ class Main extends Component {
     if (!this.state.showLeaderboard) {
       return (
         <div id="challengecard">
+          <div class="inboxWrapper">
+            <p id="inbox">INBOX</p>
+          </div>
+          <hr className="fullWidth" />
           {/* <div className="userProfile">dc</div> */}
           {mails}
         </div>

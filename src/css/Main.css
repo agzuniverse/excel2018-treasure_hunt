@@ -120,6 +120,24 @@
   z-index: 1;
 }
 
+.inboxWrapper {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin: -5px;
+  margin-bottom: -10px;
+  padding-right: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  text-align: center;
+}
+
+#inbox {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 10px;
+  color: rgb(249, 246, 57);
+}
+
 #challengecard {
   height: 90%;
   margin-left: 20px;
