@@ -24,7 +24,6 @@ class MailTemplate extends Component {
         if (xhr.readyState == 4 && xhr.status == 200) {
           let res = xhr.responseText;
           res = JSON.parse(res);
-          console.log(res);
           if (res.answer == "Wrong") {
             document.getElementsByClassName(
               "incorrectAnswer"
@@ -47,7 +46,6 @@ class MailTemplate extends Component {
 
   render() {
     const { title, timestamp, content, attachment, image } = this.props;
-    console.log(attachment);
     return (
       <div className="mailDiv">
         <div>

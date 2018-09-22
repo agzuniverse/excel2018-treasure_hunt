@@ -67,7 +67,7 @@ class Main extends Component {
   componentDidMount() {
     let authToken = localStorage.getItem("auth_token");
     if (authToken) {
-      fetch(base_url+"/api/session_check/", {
+      fetch(base_url + "/api/session_check/", {
         headers: {
           Authorization: `token ${authToken}`
         }
@@ -89,12 +89,11 @@ class Main extends Component {
           }
         });
     }
-    fetch(base_url+"/api/leaderboard/")
+    fetch(base_url + "/api/leaderboard/")
       .then(res => {
         return res.json();
       })
       .then(data => {
-        console.log(data);
         let leaderboard = [],
           user = {};
         if (!data.detail) {
@@ -112,7 +111,7 @@ class Main extends Component {
   }
 
   fetchInfo = () => {
-    fetch(base_url+"/api/ask/", {
+    fetch(base_url + "/api/ask/", {
       headers: {
         Authorization: `token ${this.state.auth_token}`
       }
@@ -121,7 +120,6 @@ class Main extends Component {
         return res.json();
       })
       .then(data => {
-        console.log(data);
         this.setState({
           mailList: [
             {
@@ -139,12 +137,11 @@ class Main extends Component {
         });
       });
 
-    fetch(base_url+"/api/leaderboard/")
+    fetch(base_url + "/api/leaderboard/")
       .then(res => {
         return res.json();
       })
       .then(data => {
-        console.log(data);
         let leaderboard = [],
           user = {};
         if (!data.detail) {
@@ -231,7 +228,7 @@ class Main extends Component {
   // };
 
   logout = () => {
-    fetch(base_url+"/api/logout/").then(res => {
+    fetch(base_url + "/api/logout/").then(res => {
       this.setState(
         {
           isLoggedIn: false
@@ -258,7 +255,8 @@ class Main extends Component {
         <div id="logodiv">
           <img
             id="logo"
-            src={excel} style={{ height: "12em", width: "auto" }}
+            src={excel}
+            style={{ height: "12em", width: "auto" }}
           />
         </div>
         <div className="btn">
@@ -286,9 +284,8 @@ class Main extends Component {
   responseGoogleSuccess = res => {
     let main = this;
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       let res = xhr.responseText;
-      console.log(res);
       if (res && JSON.parse(res).login) {
         main.setState(
           {
@@ -302,14 +299,12 @@ class Main extends Component {
         );
       }
     };
-    xhr.open("POST", base_url+"/api/social/google-oauth2/"); //CHANGE URL IF NEEDED
+    xhr.open("POST", base_url + "/api/social/google-oauth2/"); //CHANGE URL IF NEEDED
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.send(JSON.stringify({ access_token: res.accessToken }));
   };
 
-  responseGoogleFailure = res => {
-    console.log(res);
-  };
+  responseGoogleFailure = res => {};
 
   toggleSidebar = () => {
     this.setState(
