@@ -13,17 +13,21 @@ class Leaderboard extends Component {
         </Button>
         <table className="table">
           <tr>
+            <th>Rank</th>
+            <th id="namehead">Name</th>
             <th>Level</th>
-            <th>Name</th>
           </tr>
-          {this.props.users.map(user => {
+          {this.props.users.map((user, rank) => {
             return (
-              <tr>
-                <td>{user.level}</td>
-                <td>
+              <tr id="contenttr">
+                <td>{rank+1}</td>
+                <td id="imgcell">
                   <img src={user.pic} alt="" className="userPic" />
+                </td>
+                <td>
                   {user.name}
                 </td>
+                <td>{user.level}</td>
               </tr>
             );
           })}
