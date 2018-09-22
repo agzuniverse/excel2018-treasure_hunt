@@ -70,8 +70,7 @@ class MailTemplate extends Component {
           </Button>
           <span className="incorrectAnswer"> Answer is incorrect! </span>
           <span className="whitespaceAnswer">
-            {" "}
-            Answer should not contain whitespace!{" "}
+            Answer should not contain whitespace!
           </span>
           <span className="correctAnswer"> Answer is correct! </span>
         </div>

@@ -120,21 +120,39 @@ class Main extends Component {
         return res.json();
       })
       .then(data => {
-        this.setState({
-          mailList: [
-            {
-              mailHeader: {
-                title: `Level ${data.level}`,
-                timestamp: data.timestamp
-              },
-              mailBody: {
-                content: data.source_hint,
-                image: data.image,
-                attachment: data.data_url
+        if (data.level == "finished") {
+          this.setState({
+            mailList: [
+              {
+                mailHeader: {
+                  title: `You have completed all levels!`,
+                  timestamp: data.timestamp
+                },
+                mailBody: {
+                  content: data.source_hint,
+                  image: data.image,
+                  attachment: data.data_url
+                }
               }
-            }
-          ]
-        });
+            ]
+          });
+        } else {
+          this.setState({
+            mailList: [
+              {
+                mailHeader: {
+                  title: `Level ${data.level}`,
+                  timestamp: data.timestamp
+                },
+                mailBody: {
+                  content: data.source_hint,
+                  image: data.image,
+                  attachment: data.data_url
+                }
+              }
+            ]
+          });
+        }
       });
 
     fetch(base_url + "/api/leaderboard/")
