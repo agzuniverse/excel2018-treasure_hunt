@@ -306,7 +306,7 @@ class Main extends Component {
   responseGoogleSuccess = res => {
     let main = this;
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       let res = xhr.responseText;
       if (res && JSON.parse(res).login) {
         main.setState(
@@ -326,7 +326,7 @@ class Main extends Component {
     xhr.send(JSON.stringify({ access_token: res.accessToken }));
   };
 
-  responseGoogleFailure = res => {};
+  responseGoogleFailure = res => { };
 
   toggleSidebar = () => {
     this.setState(
