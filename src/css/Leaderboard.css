@@ -14,8 +14,11 @@
 }
 .table tr {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 5fr 1fr 5fr 5fr;
   padding: 15px;
+}
+#namehead {
+  grid-column: 2 / 4;
 }
 .table th {
   font-size: 25px;
