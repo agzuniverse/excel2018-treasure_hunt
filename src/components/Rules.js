@@ -1,15 +1,20 @@
 import React, { Component } from "react";
-import Sidebar from "./Sidebar";
 import "../css/Rules.css";
-import GoogleLogin from "react-google-login";
 import Icon from "@material-ui/core/Icon";
+import { Link } from "react-router-dom";
 
 class Main extends Component {
   render() {
     return (
       <div className="rulesbackground">
         <div className="rules">
-          <span id="ruletitle">Rules</span>
+          <span id="ruletitle">
+            &nbsp;
+            <Link to="/">
+              <Icon className="closeLeader">arrow_back</Icon>
+            </Link>
+            &nbsp;&nbsp;Rules
+          </span>
           <hr />
           <ol>
             <li> Admins decisions are final and should not be questioned. </li>
