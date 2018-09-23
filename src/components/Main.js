@@ -19,6 +19,7 @@ class Main extends Component {
       isMobileSidebarOpen: false,
       isLoggedIn: false,
       showLeaderboard: false,
+      gameOver: false,
       name: "",
       email: "",
       mailList: [],
@@ -107,7 +108,8 @@ class Main extends Component {
                   attachment: data.data_url
                 }
               }
-            ]
+            ],
+            gameOver: true
           });
         } else {
           this.setState({
@@ -171,23 +173,33 @@ class Main extends Component {
 
   challenges = () => {
     const mails = this.state.mailList.map(mail => {
-      return (
-        <MailRow
-          title={mail.mailHeader.title}
-          timestamp={mail.mailHeader.timestamp}
-          onClick={index => {
-            this.setState({
-              open: true,
-              modalContent: mail.mailBody.content,
-              modalTitle: mail.mailHeader.title,
-              modalTimestamp: mail.mailHeader.timestamp,
-              modalAttachment: mail.mailBody.attachment,
-              modalImage: mail.mailBody.image
-            });
-          }}
-          index={this.state.mailList.indexOf(mail)}
-        />
-      );
+      if (!this.state.gameOver) {
+        return (
+          <MailRow
+            title={mail.mailHeader.title}
+            timestamp={mail.mailHeader.timestamp}
+            onClick={index => {
+              this.setState({
+                open: true,
+                modalContent: mail.mailBody.content,
+                modalTitle: mail.mailHeader.title,
+                modalTimestamp: mail.mailHeader.timestamp,
+                modalAttachment: mail.mailBody.attachment,
+                modalImage: mail.mailBody.image
+              });
+            }}
+            index={this.state.mailList.indexOf(mail)}
+          />
+        );
+      } else {
+        return (
+          <MailRow
+            title={mail.mailHeader.title}
+            timestamp={mail.mailHeader.timestamp}
+            index={this.state.mailList.indexOf(mail)}
+          />
+        );
+      }
     });
 
     if (!this.state.showLeaderboard) {
