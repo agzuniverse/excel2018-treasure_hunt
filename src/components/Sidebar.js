@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../css/Sidebar.css";
-import logo from "../assets/final.png";
-import treasure from "../assets/treasureNew.png";
+import logo from "../assets/aa.png";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
