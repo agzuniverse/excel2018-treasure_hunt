@@ -52,6 +52,7 @@
   color: white;
   padding: 5px;
   padding-top: 1em;
+  text-align: center;
 }
 
 .userDetails {
@@ -89,4 +90,5 @@
   padding: 3px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
