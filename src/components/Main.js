@@ -21,34 +21,7 @@ class Main extends Component {
       showLeaderboard: false,
       name: "",
       email: "",
-      mailList: [
-        {
-          mailHeader: {
-            title: "Dummy challenge",
-            timestamp: "2018-8-16 2:30PM"
-          },
-          mailBody: {
-            content: "lorem ipsum",
-            image:
-              "https://avatars1.githubusercontent.com/u/22353313?s=460&v=4",
-            attachment:
-              "https://avatars1.githubusercontent.com/u/22353313?s=460&v=4"
-          }
-        },
-        {
-          mailHeader: {
-            title: "Another one",
-            timestamp: "2018-9-1 11:30PM"
-          },
-          mailBody: {
-            content: "dolor sit amet",
-            image:
-              "https://avatars0.githubusercontent.com/u/31545426?s=460&v=4",
-            attachment:
-              "https://avatars0.githubusercontent.com/u/31545426?s=460&v=4"
-          }
-        }
-      ],
+      mailList: [],
       modalContent: "",
       modalTitle: "",
       modalTimestamp: "",
@@ -306,7 +279,7 @@ class Main extends Component {
   responseGoogleSuccess = res => {
     let main = this;
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       let res = xhr.responseText;
       if (res && JSON.parse(res).login) {
         main.setState(
@@ -326,7 +299,7 @@ class Main extends Component {
     xhr.send(JSON.stringify({ access_token: res.accessToken }));
   };
 
-  responseGoogleFailure = res => { };
+  responseGoogleFailure = res => {};
 
   toggleSidebar = () => {
     this.setState(
