@@ -260,10 +260,7 @@ class Main extends Component {
         <div className="design1 design" />
         <div className="design2 design" />
         <div id="logodiv">
-          <img
-            id="logo"
-            src={excel}
-          />
+          <img id="logo" src={excel} />
         </div>
         <div className="btn">
           <GoogleLogin
