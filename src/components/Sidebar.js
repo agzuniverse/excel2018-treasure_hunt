@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../css/Sidebar.css";
-import sherlock from "../assets/sherDone.png";
-import treasure from "../assets/treasureNew.png";
+import logo from "../assets/aa.png";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
@@ -57,7 +56,7 @@ class Sidebar extends Component {
     return (
       <div className="loginSidebar">
         <div className="logo">
-          <img src={treasure} style={{ width: "15em" }} />
+          <img src={logo} style={{ width: "15em" }} />
         </div>
 
         {this.props.isLoggedIn ? (

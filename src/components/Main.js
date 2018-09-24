@@ -8,6 +8,7 @@ import MailTemplate from "./MailTemplate";
 import Leaderboard from "./Leaderboard";
 import Modal from "@material-ui/core/Modal";
 import Icon from "@material-ui/core/Icon";
+import Prologue from "./Prologue";
 
 var base_url = "http://deduce.excelmec.org:8000";
 
@@ -19,36 +20,11 @@ class Main extends Component {
       isMobileSidebarOpen: false,
       isLoggedIn: false,
       showLeaderboard: false,
+      showPrologue: false,
+      gameOver: false,
       name: "",
       email: "",
-      mailList: [
-        {
-          mailHeader: {
-            title: "Dummy challenge",
-            timestamp: "2018-8-16 2:30PM"
-          },
-          mailBody: {
-            content: "lorem ipsum",
-            image:
-              "https://avatars1.githubusercontent.com/u/22353313?s=460&v=4",
-            attachment:
-              "https://avatars1.githubusercontent.com/u/22353313?s=460&v=4"
-          }
-        },
-        {
-          mailHeader: {
-            title: "Another one",
-            timestamp: "2018-9-1 11:30PM"
-          },
-          mailBody: {
-            content: "dolor sit amet",
-            image:
-              "https://avatars0.githubusercontent.com/u/31545426?s=460&v=4",
-            attachment:
-              "https://avatars0.githubusercontent.com/u/31545426?s=460&v=4"
-          }
-        }
-      ],
+      mailList: [],
       modalContent: "",
       modalTitle: "",
       modalTimestamp: "",
@@ -120,6 +96,11 @@ class Main extends Component {
         return res.json();
       })
       .then(data => {
+        if (data.level == "1") {
+          this.setState({
+            showPrologue: true
+          });
+        }
         if (data.level == "finished") {
           this.setState({
             mailList: [
@@ -134,7 +115,8 @@ class Main extends Component {
                   attachment: data.data_url
                 }
               }
-            ]
+            ],
+            gameOver: true
           });
         } else {
           this.setState({
@@ -198,36 +180,61 @@ class Main extends Component {
 
   challenges = () => {
     const mails = this.state.mailList.map(mail => {
-      return (
-        <MailRow
-          title={mail.mailHeader.title}
-          timestamp={mail.mailHeader.timestamp}
-          onClick={index => {
-            this.setState({
-              open: true,
-              modalContent: mail.mailBody.content,
-              modalTitle: mail.mailHeader.title,
-              modalTimestamp: mail.mailHeader.timestamp,
-              modalAttachment: mail.mailBody.attachment,
-              modalImage: mail.mailBody.image
-            });
-          }}
-          index={this.state.mailList.indexOf(mail)}
-        />
-      );
+      if (!this.state.gameOver) {
+        return (
+          <MailRow
+            title={mail.mailHeader.title}
+            timestamp={mail.mailHeader.timestamp}
+            onClick={index => {
+              this.setState({
+                open: true,
+                modalContent: mail.mailBody.content,
+                modalTitle: mail.mailHeader.title,
+                modalTimestamp: mail.mailHeader.timestamp,
+                modalAttachment: mail.mailBody.attachment,
+                modalImage: mail.mailBody.image
+              });
+            }}
+            index={this.state.mailList.indexOf(mail)}
+          />
+        );
+      } else {
+        return (
+          <MailRow
+            title={mail.mailHeader.title}
+            timestamp={mail.mailHeader.timestamp}
+            index={this.state.mailList.indexOf(mail)}
+          />
+        );
+      }
     });
 
     if (!this.state.showLeaderboard) {
-      return (
-        <div id="challengecard">
-          <div class="inboxWrapper">
-            <p id="inbox">INBOX</p>
+      if (this.state.showPrologue) {
+        return (
+          <div id="challengecard">
+            <div class="inboxWrapper">
+              <p id="inbox">PROLOGUE</p>
+            </div>
+            <hr className="fullWidth" />
+            <Prologue
+              closePrologue={() => {
+                this.setState({ showPrologue: false });
+              }}
+            />
           </div>
-          <hr className="fullWidth" />
-          {/* <div className="userProfile">dc</div> */}
-          {mails}
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div id="challengecard">
+            <div class="inboxWrapper">
+              <p id="inbox">INBOX</p>
+            </div>
+            <hr className="fullWidth" />
+            {mails}
+          </div>
+        );
+      }
     }
     return (
       <Leaderboard
@@ -236,18 +243,6 @@ class Main extends Component {
       />
     );
   };
-
-  // viewmail = index => {
-  //   const mail = this.state.mailList[index];
-  //   return (
-  //     <MailTemplate
-  //       title={mail.mailHeader.title}
-  //       timestamp={mail.mailHeader.timestamp}
-  //       content={mail.mailBody.content}
-  //       attachment={mail.mailBody.attachment}
-  //     />
-  //   );
-  // };
 
   logout = () => {
     fetch(base_url + "/api/logout/").then(res => {
@@ -275,11 +270,7 @@ class Main extends Component {
         <div className="design1 design" />
         <div className="design2 design" />
         <div id="logodiv">
-          <img
-            id="logo"
-            src={excel}
-            style={{ height: "12em", width: "auto" }}
-          />
+          <img id="logo" src={excel} />
         </div>
         <div className="btn">
           <GoogleLogin

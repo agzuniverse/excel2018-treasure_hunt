@@ -46,6 +46,7 @@ class MailTemplate extends Component {
 
   render() {
     const { title, timestamp, content, attachment, image } = this.props;
+
     return (
       <div className="mailDiv">
         <div>
@@ -53,7 +54,7 @@ class MailTemplate extends Component {
           <hr className="fullWidth" />
         </div>
         <div className="contentWrapper">
-          <span className="content">{content}</span>
+          <p className="content">{content}</p>
           {attachment ? (
             <span>
               <a href={attachment} target="_blank">

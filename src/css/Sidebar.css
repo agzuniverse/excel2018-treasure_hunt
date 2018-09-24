@@ -83,10 +83,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: -5em;
 }
 
 .logout {
-  margin-top: 5em;
+  margin-top: 2em;
   padding: 3px;
   display: flex;
   flex-direction: column;
