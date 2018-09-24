@@ -8,6 +8,7 @@ import MailTemplate from "./MailTemplate";
 import Leaderboard from "./Leaderboard";
 import Modal from "@material-ui/core/Modal";
 import Icon from "@material-ui/core/Icon";
+import Prologue from "./Prologue";
 
 var base_url = "http://deduce.excelmec.org:8000";
 
@@ -19,6 +20,7 @@ class Main extends Component {
       isMobileSidebarOpen: false,
       isLoggedIn: false,
       showLeaderboard: false,
+      showPrologue: false,
       gameOver: false,
       name: "",
       email: "",
@@ -94,6 +96,11 @@ class Main extends Component {
         return res.json();
       })
       .then(data => {
+        if (data.level == "1") {
+          this.setState({
+            showPrologue: true
+          });
+        }
         if (data.level == "finished") {
           this.setState({
             mailList: [
@@ -203,15 +210,31 @@ class Main extends Component {
     });
 
     if (!this.state.showLeaderboard) {
-      return (
-        <div id="challengecard">
-          <div class="inboxWrapper">
-            <p id="inbox">INBOX</p>
+      if (this.state.showPrologue) {
+        return (
+          <div id="challengecard">
+            <div class="inboxWrapper">
+              <p id="inbox">PROLOGUE</p>
+            </div>
+            <hr className="fullWidth" />
+            <Prologue
+              closePrologue={() => {
+                this.setState({ showPrologue: false });
+              }}
+            />
           </div>
-          <hr className="fullWidth" />
-          {mails}
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div id="challengecard">
+            <div class="inboxWrapper">
+              <p id="inbox">INBOX</p>
+            </div>
+            <hr className="fullWidth" />
+            {mails}
+          </div>
+        );
+      }
     }
     return (
       <Leaderboard
