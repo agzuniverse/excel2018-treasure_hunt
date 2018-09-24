@@ -209,7 +209,6 @@ class Main extends Component {
             <p id="inbox">INBOX</p>
           </div>
           <hr className="fullWidth" />
-          {/* <div className="userProfile">dc</div> */}
           {mails}
         </div>
       );
@@ -221,18 +220,6 @@ class Main extends Component {
       />
     );
   };
-
-  // viewmail = index => {
-  //   const mail = this.state.mailList[index];
-  //   return (
-  //     <MailTemplate
-  //       title={mail.mailHeader.title}
-  //       timestamp={mail.mailHeader.timestamp}
-  //       content={mail.mailBody.content}
-  //       attachment={mail.mailBody.attachment}
-  //     />
-  //   );
-  // };
 
   logout = () => {
     fetch(base_url + "/api/logout/").then(res => {
