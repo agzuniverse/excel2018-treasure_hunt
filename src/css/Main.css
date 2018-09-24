@@ -1,3 +1,15 @@
+.prologueText{
+  font-size: 18px;
+  font-weight: bold;
+  overflow-y: scroll;
+  color: white;
+}
+.close{
+  padding: 16px;
+  font-weight: 500;
+  color: white;
+  float: right;
+}
 .Login {
   display: grid;
   grid-template-columns: 2fr 7fr;

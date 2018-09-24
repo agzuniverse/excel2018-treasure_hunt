@@ -215,12 +215,12 @@ class Main extends Component {
           <div id="challengecard">
             <div class="inboxWrapper">
               <p id="inbox">PROLOGUE</p>
+              <a onClick={() => this.setState({ showPrologue: false })}>
+                <Icon className="close">close</Icon>
+              </a>
             </div>
             <hr className="fullWidth" />
             <Prologue
-              closePrologue={() => {
-                this.setState({ showPrologue: false });
-              }}
             />
           </div>
         );
