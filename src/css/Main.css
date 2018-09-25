@@ -4,7 +4,8 @@
   overflow-y: scroll;
   color: white;
   white-space: pre-line;
-  max-height: 60vh;
+  height: 60vh;
+  width: 70vw;
 }
 .close{
   padding: 16px;
