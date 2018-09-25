@@ -1,14 +1,17 @@
-.prologueText{
+.conversationText{
   font-size: 18px;
   font-weight: bold;
   overflow-y: scroll;
   color: white;
+  white-space: pre-line;
+  height: 60vh;
+  width: 70vw;
 }
 .close{
   padding: 16px;
   font-weight: 500;
   color: white;
-  float: right;
+  /* justify-content: flex-end; */
 }
 .Login {
   display: grid;
@@ -137,14 +140,21 @@
   width: 100%;
   background-color: rgba(0, 0, 0, 0.6);
   margin: -5px;
-  margin-bottom: -10px;
+  margin-bottom:   -10px;
   padding-right: 10px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.close{
+  flex-basis: 10%;
 }
 
 #inbox {
+  flex-basis: 90%;
   font-size: 24px;
   font-weight: 700;
   line-height: 10px;

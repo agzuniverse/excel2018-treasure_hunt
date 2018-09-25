@@ -8,7 +8,7 @@ import MailTemplate from "./MailTemplate";
 import Leaderboard from "./Leaderboard";
 import Modal from "@material-ui/core/Modal";
 import Icon from "@material-ui/core/Icon";
-import Prologue from "./Prologue";
+import Conversation from "./Conversation";
 
 var base_url = "http://deduce.excelmec.org:8000";
 
@@ -20,7 +20,9 @@ class Main extends Component {
       isMobileSidebarOpen: false,
       isLoggedIn: false,
       showLeaderboard: false,
-      showPrologue: false,
+      showConversation: false,
+      conversationType: "",
+      conversationContent: "",
       gameOver: false,
       name: "",
       email: "",
@@ -137,6 +139,24 @@ class Main extends Component {
         }
       });
 
+    fetch(base_url + "/api/conversation/", {
+      headers: {
+        Authorization: `token ${this.state.auth_token}`
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        if (data.isAvailable == "true") {
+          this.setState({
+            conversationContent: data.content,
+            conversationType: data.type,
+            showConversation: true
+          });
+        }
+      });
+
     fetch(base_url + "/api/leaderboard/")
       .then(res => {
         return res.json();
@@ -210,18 +230,17 @@ class Main extends Component {
     });
 
     if (!this.state.showLeaderboard) {
-      if (this.state.showPrologue) {
+      if (this.state.showConversation) {
         return (
           <div id="challengecard">
             <div class="inboxWrapper">
-              <p id="inbox">PROLOGUE</p>
-              <a onClick={() => this.setState({ showPrologue: false })}>
+              <p id="inbox">{this.state.conversationType}</p>
+              <a onClick={() => this.setState({ showConversation: false })}>
                 <Icon className="close">close</Icon>
               </a>
             </div>
             <hr className="fullWidth" />
-            <Prologue
-            />
+            <Conversation content={this.state.conversationContent} />
           </div>
         );
       } else {
@@ -297,7 +316,7 @@ class Main extends Component {
   responseGoogleSuccess = res => {
     let main = this;
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       let res = xhr.responseText;
       if (res && JSON.parse(res).login) {
         main.setState(
@@ -317,7 +336,7 @@ class Main extends Component {
     xhr.send(JSON.stringify({ access_token: res.accessToken }));
   };
 
-  responseGoogleFailure = res => {};
+  responseGoogleFailure = res => { };
 
   toggleSidebar = () => {
     this.setState(
