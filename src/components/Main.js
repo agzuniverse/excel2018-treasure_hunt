@@ -254,6 +254,13 @@ class Main extends Component {
             </div>
             <hr className="fullWidth" />
             {mails}
+            <MailRow
+              title="Stuck? Look for clues on facebook."
+              onClick={() => {
+                let win = window.open("https://www.facebook.com/deduceExcel2018", '_blank');
+                win.focus();
+              }}
+            />
           </div>
         );
       }
