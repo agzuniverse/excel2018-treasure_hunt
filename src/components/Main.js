@@ -9,6 +9,7 @@ import Leaderboard from "./Leaderboard";
 import Modal from "@material-ui/core/Modal";
 import Icon from "@material-ui/core/Icon";
 import Conversation from "./Conversation";
+import ReactGA from "react-ga";
 
 var base_url = "http://deduce.excelmec.org:8000";
 
@@ -40,6 +41,8 @@ class Main extends Component {
         }
       ]
     };
+    ReactGA.initialize("UA-126390835-1");
+    ReactGA.pageview(window.location.pathname);
   }
 
   componentDidMount() {
@@ -316,7 +319,7 @@ class Main extends Component {
   responseGoogleSuccess = res => {
     let main = this;
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       let res = xhr.responseText;
       if (res && JSON.parse(res).login) {
         main.setState(
@@ -336,7 +339,7 @@ class Main extends Component {
     xhr.send(JSON.stringify({ access_token: res.accessToken }));
   };
 
-  responseGoogleFailure = res => { };
+  responseGoogleFailure = res => {};
 
   toggleSidebar = () => {
     this.setState(
