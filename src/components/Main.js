@@ -139,7 +139,11 @@ class Main extends Component {
         }
       });
 
-    fetch(base_url + "/api/conversation")
+    fetch(base_url + "/api/conversation/", {
+      headers: {
+        Authorization: `token ${this.state.auth_token}`
+      }
+    })
       .then(res => {
         return res.json();
       })
@@ -312,7 +316,7 @@ class Main extends Component {
   responseGoogleSuccess = res => {
     let main = this;
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       let res = xhr.responseText;
       if (res && JSON.parse(res).login) {
         main.setState(
@@ -332,7 +336,7 @@ class Main extends Component {
     xhr.send(JSON.stringify({ access_token: res.accessToken }));
   };
 
-  responseGoogleFailure = res => {};
+  responseGoogleFailure = res => { };
 
   toggleSidebar = () => {
     this.setState(
