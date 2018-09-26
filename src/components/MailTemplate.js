@@ -11,13 +11,7 @@ class MailTemplate extends Component {
   }
 
   handleSubmit = () => {
-    let answer = document.getElementById("ans").value;
-    document.getElementsByClassName("whitespaceAnswer")[0].style.display =
-      "none";
-    if (answer.indexOf(" ") !== -1) {
-      document.getElementsByClassName("whitespaceAnswer")[0].style.display =
-        "block";
-    } else {
+	let ans = document.getElementById("ans");
       //Send the answer to backend
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -40,8 +34,7 @@ class MailTemplate extends Component {
       xhr.open("POST", base_url + "/api/answer/"); //CHANGE URL IF NEEDED
       xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       xhr.setRequestHeader("Authorization", `token ${this.props.authToken}`);
-      xhr.send(JSON.stringify({ answer: answer }));
-    }
+      xhr.send(JSON.stringify({ answer: ans}));
   };
 
   render() {
@@ -65,7 +58,9 @@ class MailTemplate extends Component {
           <img className="q_image" src={image} />
         </div>
         <div className="inputWrapper">
-          <input type="text" id="ans" placeholder="Your answer" />
+          <input type="text" id="ans" placeholder="Your answer" onChange={() => {
+document.getElementById("ans").value = document.getElementById("ans").value.toLowerCase().replace(/^\s+|\s+$/g, '');
+		}}/>
           <Button variant="oulined" color="inherit" onClick={this.handleSubmit}>
             Submit
           </Button>
