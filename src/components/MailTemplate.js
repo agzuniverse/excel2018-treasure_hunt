@@ -11,7 +11,7 @@ class MailTemplate extends Component {
   }
 
   handleSubmit = () => {
-	let ans = document.getElementById("ans");
+	let ans = document.getElementById("ans").value;
       //Send the answer to backend
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
