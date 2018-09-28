@@ -11,9 +11,15 @@ class MailRow extends Component {
     const { title, timestamp, index, onClick } = this.props;
     return (
       <div className="mailRowWrapper">
-        <div className="mailRow" onClick={() => onClick(index)}>
-          <span className="title">{title}</span>
-        </div>
+        {onClick ? (
+          <div className="mailRow" onClick={() => onClick(index)}>
+            <span className="title">{title}</span>
+          </div>
+        ) : (
+          <div className="mailRow">
+            <span className="title">{title}</span>
+          </div>
+        )}
       </div>
     );
   }
