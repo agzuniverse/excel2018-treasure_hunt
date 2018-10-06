@@ -137,3 +137,31 @@ a:visited {
   display: none;
   color: green;
 }
+
+.gameoverWrapper {
+  background: url("../assets/treasureHunt.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.mailRowWrapperGameover {
+  width: 80vw;
+}
+.mailRowGameover {
+  background: #e9d362;
+  background: -webkit-linear-gradient(to left, #333333, #e9d362);
+  background: linear-gradient(to left, #333333, #e9d362);
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.87);
+  padding: 0px 24px 0px 24px;
+  margin: 4px;
+  border-radius: 15px;
+  transition: box-shadow 0.2s;
+}
